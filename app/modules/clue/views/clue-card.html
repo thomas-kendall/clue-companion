@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Suspect</th>
+                    <th>Owner</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="suspect in getGame().suspects">
+                    <td>{{suspect.name}}</td>
+                    <td>
+                        <select ng-model="suspect.owner" ng-options="aSuspect.name for aSuspect in getGame().suspects" ng-change="suspectOwnerAssigned(suspect, suspect.owner)">
+                            <option value="">?</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Weapon</th>
+                    <th>Owner</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="weapon in getGame().weapons">
+                    <td>{{weapon.name}}</td>
+                    <td>
+                        <select ng-model="weapon.owner" ng-options="aSuspect.name for aSuspect in getGame().suspects" ng-change="weaponOwnerAssigned(weapon, suspect.owner)">
+                            <option value="">?</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Room</th>
+                    <th>Owner</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="room in getGame().rooms">
+                    <td>{{room.name}}</td>
+                    <td>
+                        <select ng-model="room.owner" ng-options="aSuspect.name for aSuspect in getGame().suspects" ng-change="roomOwnerAssigned(room, suspect.owner)">
+                            <option value="">?</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    
+
