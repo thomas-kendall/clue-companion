@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-12">
+        <form>
+            <div class="form-group">
+                <label for="possibleSuspect">Possible Suspect</label>
+                <select ng-model="rumor.possibleSuspect" ng-options="suspect.name for suspect in getSuspects()">
+                    <option value="">None</option>
+                </select>
+            </div>            
+            <div class="form-group">
+                <label for="possibleWeapon">Possible Weapon</label>
+                <select ng-model="rumor.possibleWeapon" ng-options="weapon.name for weapon in getWeapons()">
+                    <option value="">None</option>
+                </select>
+            </div>            
+            <div class="form-group">
+                <label for="possibleRoom">Possible Room</label>
+                <select ng-model="rumor.possibleRoom" ng-options="room.name for room in getRooms()">
+                    <option value="">None</option>
+                </select>
+            </div>            
+            <div class="form-group">
+                <label for="cardShownBy">Card shown by</label>
+                <select ng-model="rumor.cardShownBy" ng-options="player.name for player in getPlayers()">
+                    <option value="">Nobody</option>
+                </select>
+            </div>            
+            <div class="form-group">
+                <label>Players that could not show</label>
+                <div ng-repeat="player in getPlayers()">
+                    <label>
+                        <input type="checkbox" ng-checked="playerWithoutCardsExists(player)" ng-click="togglePlayerWithoutCards(player)" />
+                        {{ player.name }}
+                    </label>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" ng-click="submitRumor()">Submit Rumor</button>         
+        </form>
+    </div>
+</div>

@@ -1,18 +1,33 @@
 var clueCtrl = function($scope, $location, clueService) {
-    $scope.getGame = function() {
-        return clueService.getGame();
+
+    // Redirect if there is not a game in progress
+    if(!clueService.isGameInProgress()) {
+        $location.url('/new-game');
+        return;
+    }
+
+    $scope.getSuspects = function() {
+        return clueService.getSuspects();
     };
 
-    $scope.suspectOwnerAssigned = function(suspect, owner) {
-        clueService.assignSuspect(suspect, owner);
+    $scope.getWeapons = function() {
+        return clueService.getWeapons();
     };
 
-    $scope.weaponOwnerAssigned = function(weapon, owner) {
-        clueService.assignWeapon(weapon, owner);
+    $scope.getRooms = function() {
+        return clueService.getRooms();
     };
 
-    $scope.roomOwnerAssigned = function(room, owner) {
-        clueService.assignRoom(room, owner);
+    $scope.getPlayers = function() {
+        return clueService.getPlayers();
+    };
+
+    $scope.findOwner = function(entity) {
+        return clueService.findOwner(entity);
+    };
+
+    $scope.isProvenEntity = function(entity) {
+        return clueService.isProvenEntity(entity);
     };
 };
 

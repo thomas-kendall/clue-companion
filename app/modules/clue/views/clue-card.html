@@ -8,12 +8,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="suspect in getGame().suspects">
+                <tr ng-repeat="suspect in getSuspects()" ng-class="{success: isProvenEntity(suspect)}">
                     <td>{{suspect.name}}</td>
                     <td>
-                        <select ng-model="suspect.owner" ng-options="aSuspect.name for aSuspect in getGame().suspects" ng-change="suspectOwnerAssigned(suspect, suspect.owner)">
-                            <option value="">?</option>
-                        </select>
+                        <span ng-show="findOwner(suspect)">{{ findOwner(suspect).name }}</span>
+                        <span ng-hide="findOwner(suspect)">{{ isProvenEntity(suspect) ? 'X' : '?' }}</span>
                     </td>
                 </tr>
             </tbody>
@@ -26,17 +25,16 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Weapon</th>
+                    <th>Weapon</th>              
                     <th>Owner</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="weapon in getGame().weapons">
+                <tr ng-repeat="weapon in getWeapons()" ng-class="{success: isProvenEntity(weapon)}">
                     <td>{{weapon.name}}</td>
                     <td>
-                        <select ng-model="weapon.owner" ng-options="aSuspect.name for aSuspect in getGame().suspects" ng-change="weaponOwnerAssigned(weapon, suspect.owner)">
-                            <option value="">?</option>
-                        </select>
+                        <span ng-show="findOwner(weapon)">{{ findOwner(weapon).name }}</span>
+                        <span ng-hide="findOwner(weapon)">{{ isProvenEntity(weapon) ? 'X' : '?' }}</span>
                     </td>
                 </tr>
             </tbody>
@@ -54,12 +52,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="room in getGame().rooms">
+                <tr ng-repeat="room in getRooms()" ng-class="{success: isProvenEntity(room)}">
                     <td>{{room.name}}</td>
                     <td>
-                        <select ng-model="room.owner" ng-options="aSuspect.name for aSuspect in getGame().suspects" ng-change="roomOwnerAssigned(room, suspect.owner)">
-                            <option value="">?</option>
-                        </select>
+                        <span ng-show="findOwner(room)">{{ findOwner(room).name }}</span>
+                        <span ng-hide="findOwner(room)">{{ isProvenEntity(room) ? 'X' : '?' }}</span>
                     </td>
                 </tr>
             </tbody>

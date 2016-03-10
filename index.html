@@ -4,15 +4,15 @@
         <meta charset="UTF-8">
         <title>Clue Companion</title>
 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">        
-        <link rel="stylesheet" href="styles/app.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
     <body ng-controller="AppCtrl">
+    
+        <div ng-include="'app/modules/navigation/views/navigation.html'"></div>
 
         <div class="container">
-            <a href="#/menu"><h1>Clue Companion</h1></a>    
             <div ng-view></div>
         </div>
 
@@ -21,10 +21,20 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-route.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0/angular-cookies.min.js"></script>
+        
+        <script src="app/modules/clue/models/clue.entity.model.js"></script>
+        <script src="app/modules/clue/models/clue.rumor.data.model.js"></script>
+        <script src="app/modules/clue/models/clue.rumor.model.js"></script>
+        <script src="app/modules/clue/models/clue.player.model.js"></script>
+        <script src="app/modules/clue/models/clue.game.model.js"></script>
 
         <script src="app/app.js"></script>
-        <script src="app/modules/menu/menu.controller.js"></script>
         <script src="app/modules/clue/clue.service.js"></script>
+        <script src="app/modules/clue/new.game.controller.js"></script>
         <script src="app/modules/clue/clue.controller.js"></script>
+        <script src="app/modules/clue/card.known.controller.js"></script>
+        <script src="app/modules/clue/rumor.controller.js"></script>
+        <script src="app/modules/clue/players.controller.js"></script>
     </body>
 </html>

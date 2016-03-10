@@ -1,0 +1,139 @@
+<div class="row">
+    <div class="col-md-12">
+        <form>
+            <div class="form-group">
+                <label for="player">Player</label>
+                <select id="player" ng-model="selectedPlayer" ng-options="player.name for player in getPlayers()"></select>
+            </div>            
+        </form>
+    </div>
+</div>
+
+<h3>Cards Owned</h3>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Suspect</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="suspect in getOwnedSuspects()"">
+                    <td>{{suspect.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Weapon</th>              
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="weapon in getOwnedWeapons()">
+                    <td>{{weapon.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Room</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="room in getOwnedRooms()">
+                    <td>{{room.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<h3>Cards Unowned</h3>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Suspect</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="suspect in getUnownedSuspects()"">
+                    <td>{{suspect.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Weapon</th>              
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="weapon in getUnownedWeapons()">
+                    <td>{{weapon.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Room</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="room in getUnownedRooms()">
+                    <td>{{room.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<h3>Possibilities</h3>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Suspect</th>
+                    <th>Weapon</th>
+                    <th>Room</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="rumorData in selectedPlayer.rumorsProved">
+                    <td>{{rumorData.suspect.name}}</td>
+                    <td>{{rumorData.weapon.name}}</td>
+                    <td>{{rumorData.room.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    
+

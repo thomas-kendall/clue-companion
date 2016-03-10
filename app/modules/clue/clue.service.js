@@ -1,82 +1,126 @@
 var clueService = function() {    
 
-    var game = {
-        suspects: [],
-        weapons: [],
-        rooms: []
-    };
+    var game = null;
 
-    var getGame = function() {
-        return game;
-    };
-
-    var createNewGame = function() {
-        game = {};
-
-        game.suspects = [
-            { name: 'Mr. Green'      , owner: null },
-            { name: 'Professor Plum' , owner: null },
-            { name: 'Colonel Mustard', owner: null },
-            { name: 'Mrs. Peacock'   , owner: null },
-            { name: 'Miss Scarlet'   , owner: null },
-            { name: 'Mrs. White'     , owner: null },
+    var createNewGame = function(players) {
+        var suspects = [
+            new ClueEntityModel('suspect', 'Green'  ), // Jacob Green
+            new ClueEntityModel('suspect', 'Mustard'), // Jack Mustard
+            new ClueEntityModel('suspect', 'Peacock'), // Eleanor Peacock
+            new ClueEntityModel('suspect', 'Plum'   ), // Victor Plum
+            new ClueEntityModel('suspect', 'Scarlet'), // Kasandra Scarlet
+            new ClueEntityModel('suspect', 'White'  ), // Diane White
         ];
 
-        game.weapons = [
-            { name: 'Candlestick', owner: null },
-            { name: 'Knife'      , owner: null },
-            { name: 'Lead Pipe'  , owner: null },
-            { name: 'Revolver'   , owner: null },
-            { name: 'Rope'       , owner: null },
-            { name: 'Wrench'     , owner: null },
+        var weapons = [
+            new ClueEntityModel('weapon', 'Ax'          ),
+            new ClueEntityModel('weapon', 'Baseball bat'),
+            new ClueEntityModel('weapon', 'Candlestick' ),
+            new ClueEntityModel('weapon', 'Dumbbell'    ),
+            new ClueEntityModel('weapon', 'Knife'       ),
+            new ClueEntityModel('weapon', 'Pistol'      ),
+            new ClueEntityModel('weapon', 'Poison'      ),
+            new ClueEntityModel('weapon', 'Rope'        ),
+            new ClueEntityModel('weapon', 'Trophy'      ),
         ];
 
-        game.rooms = [
-            { name: 'Conservatory' , owner: null },
-            { name: 'Lounge'       , owner: null },
-            { name: 'Kitchen'      , owner: null },
-            { name: 'Library'      , owner: null },
-            { name: 'Hall'         , owner: null },
-            { name: 'Study'        , owner: null },
-            { name: 'Ballroom'     , owner: null },
-            { name: 'Dining Room'  , owner: null },
-            { name: 'Billiard Room', owner: null },
+        var rooms = [
+            new ClueEntityModel('room', 'Dining Room'),
+            new ClueEntityModel('room', 'Guest House'),
+            new ClueEntityModel('room', 'Hall'       ),
+            new ClueEntityModel('room', 'Kitchen'    ),
+            new ClueEntityModel('room', 'Living Room'),
+            new ClueEntityModel('room', 'Observatory'),
+            new ClueEntityModel('room', 'Patio'      ),
+            new ClueEntityModel('room', 'Spa'        ),
+            new ClueEntityModel('room', 'Theatre'    ),
         ];
+
+        game = new ClueGameModel(suspects, weapons, rooms, players);
     }; 
 
-    var assignSuspect = function(suspect, owner) {
-        for(var i = 0; i < game.suspects; i++) {
-            if(game.suspects[i] === suspect) {
-                game.suspects[i].owner = owner;
-                break;
-            }
-        }
+    var createNewClassicGame = function(players) {
+        var suspects = [
+            new ClueEntityModel('suspect', 'Colonel Mustard'),
+            new ClueEntityModel('suspect', 'Miss Scarlet'   ),
+            new ClueEntityModel('suspect', 'Mr. Green'      ),
+            new ClueEntityModel('suspect', 'Mrs. Peacock'   ),
+            new ClueEntityModel('suspect', 'Mrs. White'     ),
+            new ClueEntityModel('suspect', 'Professor Plum' ),
+        ];
+
+        var weapons = [
+            new ClueEntityModel('weapon', 'Candlestick'),
+            new ClueEntityModel('weapon', 'Knife'      ),
+            new ClueEntityModel('weapon', 'Lead Pipe'  ),
+            new ClueEntityModel('weapon', 'Revolver'   ),
+            new ClueEntityModel('weapon', 'Rope'       ),
+            new ClueEntityModel('weapon', 'Wrench'     ),
+        ];
+
+        var rooms = [
+            new ClueEntityModel('room', 'Ballroom'     ),
+            new ClueEntityModel('room', 'Billiard Room'),
+            new ClueEntityModel('room', 'Conservatory' ),
+            new ClueEntityModel('room', 'Dining Room'  ),
+            new ClueEntityModel('room', 'Hall'         ),
+            new ClueEntityModel('room', 'Kitchen'      ),
+            new ClueEntityModel('room', 'Library'      ),
+            new ClueEntityModel('room', 'Lounge'       ),
+            new ClueEntityModel('room', 'Study'        ),
+        ];
+
+        game = new ClueGameModel(suspects, weapons, rooms, players);
+    }; 
+
+    var isGameInProgress = function() {
+        return game != null;
     };
 
-    var assignWeapon = function(weapon, owner) {
-        for(var i = 0; i < game.weapons; i++) {
-            if(game.weapons[i] === weapon) {
-                game.weapons[i].owner = owner;
-                break;
-            }
-        }
+    var getSuspects = function() {
+        return game.suspects;
     };
 
-    var assignRoom = function(room, owner) {
-        for(var i = 0; i < game.rooms; i++) {
-            if(game.rooms[i] === room) {
-                game.rooms[i].owner = owner;
-                break;
-            }
-        }
+    var getWeapons = function() {
+        return game.weapons;
+    };
+
+    var getRooms = function() {
+        return game.rooms;
+    };
+
+    var getPlayers = function() {
+        return game.players;
+    };
+
+    var addEntityOwner = function(entity, owner) {
+        game.addEntityOwner(entity, owner);
+    };
+
+    var addRumor = function(rumor) {
+        game.addRumor(rumor);
+    };
+
+    var findOwner = function(clueEntity) {
+        return game.findOwner(clueEntity);
+    };
+
+    var isProvenEntity = function(clueEntity) {
+        return game.isProvenEntity(clueEntity);
     };
 
     return  {
-        getGame: getGame,
+        isGameInProgress: isGameInProgress,
+        getSuspects: getSuspects,
+        getWeapons: getWeapons,
+        getRooms: getRooms,
+        getPlayers: getPlayers,
         createNewGame: createNewGame,
-        assignSuspect: assignSuspect,
-        assignWeapon: assignWeapon,
-        assignRoom: assignRoom,
+        createNewClassicGame: createNewClassicGame,
+        addEntityOwner: addEntityOwner,
+        addRumor: addRumor,
+        findOwner: findOwner,
+        isProvenEntity: isProvenEntity
     };
 };
 
